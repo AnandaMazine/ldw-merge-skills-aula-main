@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response
 
 
 def create_app():
@@ -16,6 +16,8 @@ def create_app():
             "description": "Aprenda os conceitos essenciais da linguagem mais popular.",
             "total_lessons": 2,
             "color": "#306998",
+            "rating": 4.8,
+            "ratings_count": 42,
         },
         {
             "id": 2,
@@ -24,6 +26,8 @@ def create_app():
             "description": "Crie APIs RESTful profissionais com documentacao automatica.",
             "total_lessons": 2,
             "color": "#FF5722",
+            "rating": 4.6,
+            "ratings_count": 38,
         },
     ]
 
@@ -56,6 +60,13 @@ def create_app():
     @app.route('/')
     def index():
         return render_template('index.html', cursos=CURSOS, features=FEATURES, tech_stack=TECH_STACK)
+    
+    @app.route('/sitemal.xml')
+    def sitemap():
+        template = render_template('sitemap.xml', cursos=CURSOS)
+        response = make_response(template)
+        response.headers['Content-Type'] = 'application/xml'
+        return response
 
     @app.route('/cursos/<int:curso_id>/')
     def curso_detalhe(curso_id):

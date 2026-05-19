@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://anandamazine.github.io/ldw-merge-skills-aula-main/</loc>
+        <priority>0.1</priority>
+    </url>
+    {% for curso in cursos %}
+        <url>
+        <loc>https://anandamazine.github.io/ldw-merge-skills-aula-main/cursos/{{ curso.id }}/</loc>
+        <priority>0.8</priority>
+    </url>
+     {% endfor %}
+</urlset>
