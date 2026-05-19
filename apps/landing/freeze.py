@@ -17,8 +17,10 @@ def sitemap():
 @freezer.register_generator
 def index():
     static_dir = os.path.join(app.root_path, 'static')
+    if not os.path.isdir(static_dir):
+        return
     for filename in os.listdir(static_dir):
-            yield {'filename': filename}
+        yield {'filename': filename}
 
 if __name__ == '__main__':
     import warnings
